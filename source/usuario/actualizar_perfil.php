@@ -73,7 +73,7 @@ if (isset($_FILES['ruta_foto']) && $_FILES['ruta_foto']['error'] == 0) {
 $sql = "UPDATE usuarios SET nombres='$nombres', apellidos='$apellidos', dni='$dni', direccion='$direccion', telefono='$telefono', usuario='$usuario', ruta_cv='$ruta_cv', ruta_foto='$ruta_foto' WHERE id='$id'";
 
 if (mysqli_query($conexion, $sql)) {
-    header("Location: listar_usuarios.php");
+    header("Location: perfil.php");
 } else {
     die("Error al actualizar en la base de datos: " . mysqli_error($conexion));
 }

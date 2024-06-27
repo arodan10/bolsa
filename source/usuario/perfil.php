@@ -3,32 +3,25 @@ include("../../includes/head.php");
 include("../../includes/conectar.php");
 
 $conexion = conectar();
+
+// Obtener el ID del usuario de la sesión
+$id_usuario = $_SESSION['SESION_ID'];
+$sql = "SELECT * FROM usuarios WHERE id='$id_usuario'";
+$registro = mysqli_query($conexion, $sql);
+$fila = mysqli_fetch_array($registro);
 ?>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
   <div class="row justify-content-center">
     <!-- Inicio de la zona central del sistema -->
-
-    <?php
-    //recibimos el id a modificar
-    $pid = $_REQUEST['id'];
-
-    $sql = "SELECT * FROM usuarios WHERE id='$pid'";
-    $registro = mysqli_query($conexion, $sql);
-
-    //en la variable $fila tenemos todos los datos del
-    //registro que se desea modificar
-    $fila = mysqli_fetch_array($registro);
-    //echo print_r($fila);
-    ?>
+    
     <div class="col-md-8">
-      <h1 class="text-center mb-4">Modificar datos de Usuario</h1>
+        <h1 class="text-center mb-4">Mi Perfil</h1>
       <div class="card shadow-lg">
         <div class="card-body">
-          <form method="POST" action="actualizar_usuario.php" enctype="multipart/form-data">
-
-            <input type="hidden" name="id" value="<?php echo $fila['id'] ?>">
+          <form method="POST" action="actualizar_perfil.php" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?php echo $fila['id']; ?>">
 
             <div class="row mb-3">
               <label for="nombres" class="col-sm-2 col-form-label">Nombres</label>
@@ -71,7 +64,6 @@ $conexion = conectar();
                 <input type="text" class="form-control" name="usuario" value="<?php echo htmlspecialchars($fila['usuario']); ?>" required>
               </div>
             </div>
-
             <div class="row mb-3">
               <label for="ruta_foto" class="col-sm-2 col-form-label">Foto de Perfil</label>
               <div class="col-sm-10">
@@ -113,13 +105,9 @@ $conexion = conectar();
               </div>
             </div>
 
-            <div class="mt-3">
-                <a href="javascript:history.go(-1)" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Volver</a>
-                <button type="submit" class="btn btn-success btn-lg mt-3">
-                  <i class="fas fa-sync-alt"></i> Actualizar Usuario
-                </button>
-            </div>
-
+            <button type="submit" class="btn btn-success btn-lg mt-3">
+              <i class="fas fa-sync-alt"></i> Actualizar Usuario
+            </button>
           </form>
         </div>
       </div>

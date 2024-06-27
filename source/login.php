@@ -33,7 +33,7 @@ if ($resultado->num_rows == 1) {
     }
     
     // Redirección según el rol del usuario
-    header("Location: ../index.php");
+    header("Location: ../index.php?login_success=true");
     exit; // Siempre usa exit después de una redirección para evitar ejecuciones no deseadas
 } else {
     header("Location: form_login.php?error_login=error");

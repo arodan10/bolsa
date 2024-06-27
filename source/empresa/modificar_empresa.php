@@ -54,8 +54,11 @@
                 <input type="text" class="form-control" name="correo" value="<?php echo $fila['correo']; ?>">
             </div>
         </div>
+        <div class="mt-3">
+                <a href="javascript:history.go(-1)" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Volver</a>
+                <button type="submit" class="btn btn-success">Actualizar Empresa</button>
+            </div>
 
-        <button type="submit" class="btn btn-success">Actualizar Empresa</button>
     </form>
 
     <!-- Fin de la zona central del sistema -->

@@ -53,6 +53,9 @@ include("../includes/head.php");
 
                         <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
                     </form>
+                    <div class="text-center mt-3">
+                        <a href="usuario/registro_usuarios.php" class="btn btn-link">¿No tienes una cuenta? Registrarse</a>
+                    </div>
                 </div>
             </div>
         </div>

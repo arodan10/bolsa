@@ -32,21 +32,21 @@ $resultado = $stmt->get_result();
             </thead>
             <tbody>
                 <?php while ($postulante = $resultado->fetch_assoc()) { ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($postulante['nombres']); ?></td>
-                    <td><?php echo htmlspecialchars($postulante['apellidos']); ?></td>
-                    <td><?php echo date('d/m/Y H:i', strtotime($postulante['fecha_hora_postulante'])); ?></td>
-                    <td>
-                        <span class="badge badge-<?php echo ($postulante['estado_actual'] === 'aceptado' ? 'success' : ($postulante['estado_actual'] === 'pendiente' ? 'warning' : 'danger')); ?>">
-                            <?php echo htmlspecialchars($postulante['estado_actual']); ?>
-                        </span>
-                    </td>
-                    <td>
-                        <a href="ver_perfil_postulante.php?id_usuario=<?php echo $postulante['id']; ?>" class="btn btn-sm btn-primary">
-                            <i class="fas fa-eye"></i> Ver Perfil
-                        </a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?php echo htmlspecialchars($postulante['nombres']); ?></td>
+                        <td><?php echo htmlspecialchars($postulante['apellidos']); ?></td>
+                        <td><?php echo date('d/m/Y H:i', strtotime($postulante['fecha_hora_postulante'])); ?></td>
+                        <td>
+                            <span class="badge badge-<?php echo ($postulante['estado_actual'] === 'aceptado' ? 'success' : ($postulante['estado_actual'] === 'pendiente' ? 'warning' : 'danger')); ?>">
+                                <?php echo htmlspecialchars($postulante['estado_actual']); ?>
+                            </span>
+                        </td>
+                        <td>
+                            <a href="ver_perfil_postulante.php?id_usuario=<?php echo $postulante['id']; ?>" class="btn btn-sm btn-primary">
+                                <i class="fas fa-eye"></i> Ver Perfil
+                            </a>
+                        </td>
+                    </tr>
                 <?php } ?>
             </tbody>
         </table>

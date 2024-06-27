@@ -1,5 +1,9 @@
 <?php
     include "includes/head.php";
+
+    if (isset($_GET['login_success']) && $_GET['login_success'] == 'true') {
+        echo "<div class='alert alert-success text-center'>Sesión iniciada correctamente.</div>";
+    }
 ?>
 
 <!-- Begin Page Content -->
@@ -18,17 +22,23 @@
                     echo '</div>';
                 }
             ?>
+            
+            <!-- Imagen centrada y agrandada con Bootstrap -->
+            <div class="text-center mt-2">
+                <img src="2111.png" alt="Descripción de la imagen" class="img-fluid w-75">
+            </div>
         </div>
     </div>
     <!-- Fin de la zona central del sistema -->
 </div>
 <!-- /.container-fluid -->
+
 <?php
 //     if (isset($_SESSION['SESION_ROL']) && $_SESSION['SESION_ROL'] == '3') {
 //         include("source/oferta/buscar_oferta.php");
-
 //     }
-// ?>
+?>
+
 <?php
     include_once("includes/foot.php");
 ?>

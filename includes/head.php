@@ -64,6 +64,22 @@ session_start();
                     <span>Inicio</span></a>
             </li>
 
+            <?php
+if (!isset($_SESSION["SESION_NOMBRES"])) {
+    // Aquí puedes colocar código adicional si el usuario no está autenticado
+} else {
+?>
+    <li class="nav-item">
+        <a class="nav-link" href="<?php echo RUTAGENERAL; ?>source/usuario/perfil.php">
+            <i class="fas fa-user-circle fa-fw"></i> <!-- Icono de usuario -->
+            <span>Perfil</span>
+        </a>
+    </li>
+<?php
+}
+?>
+
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -71,12 +87,18 @@ session_start();
             <div class="sidebar-heading">
                 Interfaz
             </div>
-
+            <?php
+            if (isset($_SESSION['SESION_ROL']) && $_SESSION['SESION_ROL'] == 1) {
+            ?>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Usuarios</span>
                 </a>
+                <?php
+
+                }
+                ?>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <?php if (!isset($_SESSION["SESION_ID"])) { ?>
@@ -205,6 +227,12 @@ session_start();
             <?php
             }
             ?>
+            
+
+
+            
+
+            
 
 
 

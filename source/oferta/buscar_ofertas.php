@@ -24,7 +24,7 @@ if (isset($_POST['buscar'])) {
     }
 }
 
-$sql = "SELECT o.*, e.razon_social FROM oferta_laboral o JOIN empresas e ON o.id_empresa = e.id" . $where;
+$sql = "SELECT o.*, e.razon_social, (SELECT COUNT(*) FROM postulaciones p WHERE p.id_oferta = o.id) AS postulantes_actuales FROM oferta_laboral o JOIN empresas e ON o.id_empresa = e.id" . $where;
 $registros = mysqli_query($conexion, $sql);
 
 echo "<!-- Debug SQL: " . htmlspecialchars($sql) . " -->"; // Para depuración
@@ -65,7 +65,6 @@ if (isset($_GET['status'])) {
             <div class="form-group col-md-2">
                 <button type="submit" name="buscar" class="btn btn-primary">Buscar</button>
                 <button type="button" class="btn btn-secondary" onclick="resetForm()">Limpiar</button>
-
             </div>
         </div>
     </form>
@@ -78,6 +77,8 @@ if (isset($_GET['status'])) {
                 <th>Fecha de Publicación</th>
                 <th>Ubicación</th>
                 <th>Tipo</th>
+                <th>Vacantes</th>
+                <th>Postulantes Actuales</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -90,6 +91,8 @@ if (isset($_GET['status'])) {
                 echo "<td>" . htmlspecialchars($fila['fecha_publicacion']) . "</td>";
                 echo "<td>" . htmlspecialchars($fila['ubicacion']) . "</td>";
                 echo "<td>" . htmlspecialchars($fila['tipo']) . "</td>";
+                echo "<td>" . htmlspecialchars($fila['limite_postulante']) . "</td>";
+                echo "<td>" . htmlspecialchars($fila['postulantes_actuales']) . "</td>";
                 echo "<td><a class='btn btn-info' href='ver_oferta.php?id=" . $fila['id'] . "'>Ver Detalles</a></td>";
                 echo "</tr>";
             }

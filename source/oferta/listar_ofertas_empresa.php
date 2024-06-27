@@ -42,7 +42,7 @@ $resultado = $stmt->get_result();
                     <td><?php echo htmlspecialchars($oferta['tipo']); ?></td>
                     <td>
                         <a href="ver_postulantes.php?id_oferta=<?php echo $oferta['id']; ?>" class="btn btn-primary btn-sm"><i class="fas fa-users"></i> Ver Postulantes</a>
-                        <a href="editar_oferta.php?id=<?php echo $oferta['id']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Editar</a>
+                        <a href="modificar_oferta.php?id=<?php echo $oferta['id']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Editar</a>
                         <a href="eliminar_oferta.php?id=<?php echo $oferta['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Está seguro de eliminar esta oferta?');"><i class="fas fa-trash-alt"></i> Eliminar</a>
                     </td>
                 </tr>

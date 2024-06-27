@@ -2,8 +2,8 @@
 
 <div class="container-fluid">
   <div class="row justify-content-center">
-    <h1 class="my-4">Registro de Nuevos Usuarios</h1>
     <div class="col-md-8">
+      <h1 class="my-4 text-center mb-4">Registro de Nuevos Usuarios</h1>
       <div class="card shadow-lg">
         <div class="card-body">
           <form method="POST" action="guardar_usuario.php" class="needs-validation" enctype="multipart/form-data" novalidate>
@@ -66,6 +66,16 @@
             </div>
 
             <div class="form-group row">
+              <label for="ruta_foto" class="col-sm-2 col-form-label">Cargar Foto de Perfil</label>
+              <div class="col-sm-10">
+                <input type="file" class="form-control-file" name="ruta_foto" id="ruta_foto" accept="image/*" required>
+                <div class="mt-2">
+                  <img id="foto_preview" style="width: 100px; height: 100px;" hidden>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
               <label for="ruta_cv" class="col-sm-2 col-form-label">Cargar CV</label>
               <div class="col-sm-10">
                 <input type="file" class="form-control-file" name="ruta_cv" id="ruta_cv" accept=".pdf" required>
@@ -75,7 +85,6 @@
               </div>
             </div>
 
-
             <button type="submit" class="btn btn-primary"><i class="fas fa-user-plus"></i> Crear Usuario</button>
           </form>
         </div>
@@ -84,30 +93,24 @@
   </div>
 </div>
 
-<?php include("../../includes/foot.php"); ?>
-
 <script>
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
-  (function() {
-    'use strict';
-    window.addEventListener('load', function() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation');
-      // Loop over them and prevent submission
-      var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated');
-        }, false);
-      });
-    }, false);
-  })();
-</script>
+  document.getElementById('ruta_foto').addEventListener('change', function(event) {
+    var file = event.target.files[0];
+    if (file && file.type.startsWith('image/')) {
+      var fileReader = new FileReader();
+      fileReader.onload = function() {
+        var imgData = fileReader.result;
+        var imgPreview = document.getElementById('foto_preview');
+        imgPreview.src = imgData;
+        imgPreview.hidden = false; // Mostrar la imagen
+      };
+      fileReader.readAsDataURL(file);
+    } else {
+      alert('Por favor, seleccione un archivo de imagen.');
+      document.getElementById('foto_preview').hidden = true; // Ocultar la imagen si el archivo no es una imagen
+    }
+  });
 
-<script>
   document.getElementById('ruta_cv').addEventListener('change', function(event) {
     var file = event.target.files[0];
     if (file.type === "application/pdf") {
@@ -125,14 +128,13 @@
     }
   });
 
-  // Función para desactivar la validación y mejorar la interactividad
   (function() {
     'use strict';
     window.addEventListener('load', function() {
       var forms = document.getElementsByClassName('needs-validation');
       var validation = Array.prototype.filter.call(forms, function(form) {
         form.addEventListener('submit', function(event) {
-          if (!form.checkValidity()) {
+          if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
           }
@@ -142,3 +144,5 @@
     }, false);
   })();
 </script>
+
+<?php include("../../includes/foot.php"); ?>
